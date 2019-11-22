@@ -11,7 +11,7 @@ import Parse
 import Alamofire
 import MessageInputBar
 
-class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MessageInputBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     let commentBar = MessageInputBar()
@@ -21,14 +21,25 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        commentBar.inputTextView.placeholder = "Add a comment..."
+        commentBar.sendButton.title = "Post"
+        commentBar.delegate = self
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.keyboardDismissMode = .interactive
+        let center  = NotificationCenter.default
+        center.addObserver(self, selector: #selector(keyBoardWillBeHidden(note:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         DataRequest.addAcceptableImageContentTypes(["application/octet-stream"])
 
         // Do any additional setup after loading the view.
     }
     
+    @objc func keyBoardWillBeHidden(note: Notification) {
+        commentBar.inputTextView.text = nil
+        showsCommentBar = false
+        becomeFirstResponder()
+    }
     
     override var inputAccessoryView: UIView? {
         return commentBar
@@ -37,6 +48,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override var canBecomeFirstResponder: Bool {
         return showsCommentBar
+    }
+    
+    func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+        
+        commentBar.inputTextView.text = nil
+        showsCommentBar = false
+        becomeFirstResponder()
+        commentBar.inputTextView.resignFirstResponder()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -104,20 +123,27 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let post = posts[indexPath.row]
 
-        let comment = PFObject(className: "Comments")
-        comment["text"] = "This is a random comment"
-        comment["post"] = post
-        comment["author"] = PFUser.current()!
-
-        post.add(comment, forKey: "comments")
-
-        post.saveInBackground { (success, error) in
-            if success {
-                print("comment saved")
-            } else {
-                print("error saving comment")
-            }
+        let comments = (post["comments"] as? [PFObject]) ?? []
+        
+        if indexPath.row == comments.count + 1 {
+            showsCommentBar = true
+            becomeFirstResponder()
+            commentBar.inputTextView.becomeFirstResponder()
         }
+        
+//        comment["text"] = "This is a random comment"
+//        comment["post"] = post
+//        comment["author"] = PFUser.current()!
+//
+//        post.add(comment, forKey: "comments")
+//
+//        post.saveInBackground { (success, error) in
+//            if success {
+//                print("comment saved")
+//            } else {
+//                print("error saving comment")
+//            }
+//        }
     }
     
     @IBAction func onLogoutButton(_ sender: Any) {
