@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17871F712387B9D000A3A7F9 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17871F702387B9D000A3A7F9 /* CommentCell.swift */; };
 		17BDF083237FAEEA004A84CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BDF082237FAEEA004A84CC /* AppDelegate.swift */; };
 		17BDF085237FAEEA004A84CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BDF084237FAEEA004A84CC /* SceneDelegate.swift */; };
 		17BDF08A237FAEEA004A84CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17BDF088237FAEEA004A84CC /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		17871F702387B9D000A3A7F9 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		17BDF07F237FAEEA004A84CC /* Parstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17BDF082237FAEEA004A84CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17BDF084237FAEEA004A84CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				17BDF082237FAEEA004A84CC /* AppDelegate.swift */,
 				17BDF084237FAEEA004A84CC /* SceneDelegate.swift */,
 				17BDF088237FAEEA004A84CC /* Main.storyboard */,
+				17871F702387B9D000A3A7F9 /* CommentCell.swift */,
 				17BDF08B237FAEEF004A84CC /* Assets.xcassets */,
 				17BDF08D237FAEEF004A84CC /* LaunchScreen.storyboard */,
 				17BDF090237FAEEF004A84CC /* Info.plist */,
@@ -221,6 +224,7 @@
 				17CEEECF237FB359006A7CCF /* FeedViewController.swift in Sources */,
 				17BDF085237FAEEA004A84CC /* SceneDelegate.swift in Sources */,
 				17CEEED3237FCCFC006A7CCF /* PostCell.swift in Sources */,
+				17871F712387B9D000A3A7F9 /* CommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
