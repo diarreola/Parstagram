@@ -79,7 +79,7 @@
         <scene sceneID="NU9-3S-zav">
             <objects>
                 <viewController id="XlQ-e1-hk2" customClass="FeedViewController" customModule="Parstagram" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xYr-Ad-5Mg">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleAspectFill" id="xYr-Ad-5Mg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -159,7 +159,7 @@
         <scene sceneID="YYV-hI-XDj">
             <objects>
                 <viewController id="8aJ-LH-1k3" customClass="CameraViewController" customModule="Parstagram" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="wli-4Z-K75">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleAspectFill" id="wli-4Z-K75">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -213,7 +213,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Yt2-gv-n6W" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="33f-sv-NIX">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" id="33f-sv-NIX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
