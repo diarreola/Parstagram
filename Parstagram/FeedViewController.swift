@@ -16,6 +16,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     let commentBar = MessageInputBar()
     var showsCommentBar = false
+    var selectedPost: PFObject!
     var posts = [PFObject]()
 
     override func viewDidLoad() {
@@ -51,6 +52,22 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+        
+        let comment = PFObject(className: "Comments")
+        comment["text"] = text
+        comment["post"] = selectedPost
+        comment["author"] = PFUser.current()!
+
+        selectedPost.add(comment, forKey: "comments")
+
+        selectedPost.saveInBackground { (success, error) in
+            if success {
+                print("comment saved")
+            } else {
+                print("error saving comment")
+            }
+        }
+        tableView.reloadData()
         
         commentBar.inputTextView.text = nil
         showsCommentBar = false
@@ -121,7 +138,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let post = posts[indexPath.row]
+        let post = posts[indexPath.section]
 
         let comments = (post["comments"] as? [PFObject]) ?? []
         
@@ -129,21 +146,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             showsCommentBar = true
             becomeFirstResponder()
             commentBar.inputTextView.becomeFirstResponder()
+            
+            selectedPost = post
         }
         
-//        comment["text"] = "This is a random comment"
-//        comment["post"] = post
-//        comment["author"] = PFUser.current()!
-//
-//        post.add(comment, forKey: "comments")
-//
-//        post.saveInBackground { (success, error) in
-//            if success {
-//                print("comment saved")
-//            } else {
-//                print("error saving comment")
-//            }
-//        }
     }
     
     @IBAction func onLogoutButton(_ sender: Any) {
